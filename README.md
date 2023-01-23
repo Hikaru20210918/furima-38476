@@ -5,66 +5,55 @@
 | ------------------ | ------- | ------------------------- |
 | nickname           | string  | null: false, unique: true |
 | email              | string  | null: false, unique: true |
-| encrypted_password | string  | null: false,              |
 | encrypted_password | string  | null: false               |
-| first_name         | text    | null: false               |
-| last_name          | text    | null: false               |
-| first_name_kana    | text    | null: false               |
-| last_name_kana     | text    | null: false               |
-| birthday           | integer | null: false               |
+| first_name         | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| birthday           | date    | null: false               |
 
 ### Association
 - has_many :items
-- has_many :oders
+- has_many :orders
 
 ## items テーブル
-| Column      | Type      | Options       |
-| ----------- | --------- | --------------|
-| item_name   | string    | null: false   |
-| price       | integer   | null: false   |
-| postage     | boolean   | null: false   |
-| detail      | text      | null: false   |
-| seller      | string    | null: false   |
-| category    | text      | null: false   |
-| state       | text      | null: false   |
-| area        | text      | null: false   |
-| sipping_day | string    | null: false   |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | -------------------------------|
+| item_name      | string     | null: false                    |
+| price          | integer    | null: false                    |
+| postage        | boolean    | null: false                    |
+| detail         | text       | null: false                    |
+| seller         | string     | null: false                    |
+| category_id    | string     | null: false                    |
+| state_id       | string     | null: false                    |
+| area_id        | string     | null: false                    |
+| sipping_day_id | integer    | null: false                    |
+| user           | references | null: false, foreign_key: true |
 
 ### Association
-- has_many :images
-- has_one :oder
-
-
-## images テーブル
-| Column  | Type      | Options        |
-| ------- | --------- | ---------------|
-| image   | text      | null: false    |
-
-### Association
-belongs_to :item
-
-
-## oder テーブル
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| postcode       | string     | null: false |
-| prefectures    | string     | null: false |
-| municipalities | string     | null: false |
-| address        | string     | null: false |
-| building       | string     |             |
-| number         | integer    | null: false |
-
-### Association
-- belongs_to :user
-- belongs_to :item
 - has_one :purchase
+- belongs_to :user
 
-
-## purchase テーブル
-| Column         | Type    | Options     |
-| -------------- | ------- | ----------- |
-| buyer          | string  | null: false |
-| item_name      | string  | null: false |
+## purchases テーブル
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :oder
+- has_one :order
+
+
+## orders テーブル
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| postcode       | string     | null: false                    |
+| area_id        | string     | null: false                    |
+| municipalities | string     | null: false                    |
+| address        | string     | null: false                    |
+| building       | string     |                                |
+| phone_number   | string     | null: false                    |
+| purchase       | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :purchase
