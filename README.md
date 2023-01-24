@@ -3,7 +3,7 @@
 ## users テーブル
 | Column             | Type    | Options                   |
 | ------------------ | ------- | ------------------------- |
-| nickname           | string  | null: false, unique: true |
+| nickname           | string  | null: false               |
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false               |
 | first_name         | string  | null: false               |
@@ -14,19 +14,18 @@
 
 ### Association
 - has_many :items
-- has_many :orders
+- has_many :purchases
 
 ## items テーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | -------------------------------|
 | item_name      | string     | null: false                    |
 | price          | integer    | null: false                    |
-| postage        | boolean    | null: false                    |
 | detail         | text       | null: false                    |
-| seller         | string     | null: false                    |
-| category_id    | string     | null: false                    |
-| state_id       | string     | null: false                    |
-| area_id        | string     | null: false                    |
+| postage_id     | integer    |  null: false                   |
+| category_id    | integer    | null: false                    |
+| state_id       | integer    | null: false                    |
+| area_id        | integer    | null: false                    |
 | sipping_day_id | integer    | null: false                    |
 | user           | references | null: false, foreign_key: true |
 
@@ -42,13 +41,15 @@
 
 ### Association
 - has_one :order
+- belongs_to :user
+- belongs_to :item
 
 
 ## orders テーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postcode       | string     | null: false                    |
-| area_id        | string     | null: false                    |
+| area_id        | integer    | null: false                    |
 | municipalities | string     | null: false                    |
 | address        | string     | null: false                    |
 | building       | string     |                                |
