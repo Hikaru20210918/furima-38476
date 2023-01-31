@@ -39,12 +39,24 @@ require 'rails_helper'
            @user.valid?
            expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
         end
-         it "passwordに半角英数字が含まれていないと登録できない" do
+         it "passwordが英字のみでは登録できない" do
+            @user.password = 'aaaaaa'
+            @user.password_confirmation = 'aaaaaa'
+            @user.valid?
+            expect(@user.errors.full_messages).to include "Password is invalid"
+        end
+         it "passwordが数字のみでは登録できない" do
             @user.password = '000000'
             @user.password_confirmation = '000000'
             @user.valid?
             expect(@user.errors.full_messages).to include "Password is invalid"
-        end
+         end
+          it "passwordに全角文字を含む場合は登録できない" do
+            @user.password = '000000Ａ'
+            @user.password_confirmation = '000000Ａ'
+            @user.valid?
+            expect(@user.errors.full_messages).to include "Password is invalid"
+         end
           it "passwordとpassword_confirmationが不一致では登録できない" do
             @user.password_confirmation = '000000b'
             @user.valid?
