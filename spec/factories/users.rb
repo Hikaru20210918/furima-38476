@@ -4,10 +4,10 @@ FactoryBot.define do
     password              {'000000a'}
     password_confirmation {password}
     nickname              {'テスト'}
-    first_name            {'堀田'}
-    last_name             {'真那美'}
-    first_name_kana       {'ホリタ'}
-    last_name_kana        {'マナミ'}
+    first_name            {'山田'}
+    last_name             {'一郎'}
+    first_name_kana       {'ヤマダ'}
+    last_name_kana        {'イチロウ'}
     birthday              {'1994/01/01'}
   end
 end
