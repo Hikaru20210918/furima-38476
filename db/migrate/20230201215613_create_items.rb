@@ -9,6 +9,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :state_id,          null: false
       t.string :area_id,           null: false
       t.string :sipping_day_id,    null: false
+      t.references :user,          null: false ,foreign_key: true #学習メモ：カラム名に「_id」が勝手につく
 
       t.timestamps
     end

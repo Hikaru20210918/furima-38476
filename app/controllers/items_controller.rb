@@ -13,12 +13,17 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-  end
+      redirect_to root_path
+       else
+        render :new
+     end
+    end
 
   private
 
-  def prototype_params
-    params.require(:item).permit(:image,:item_name,:price,:category_id,:state_id,:area_id,:postage_id,:sipping_day_id)
+  def item_params
+    params.require(:item).permit(:detail,:image,:item_name,:price,:category_id,:state_id,:area_id,:postage_id,:sipping_day_id).merge(user_id: current_user.id)
+    #学習メモ：.merge()内のカラム名は user_id 「id」の記述が必要
   end
 end
-end
+
