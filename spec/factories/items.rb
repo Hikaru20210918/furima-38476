@@ -3,7 +3,6 @@ FactoryBot.define do
     item_name         { '商品名テスト' }
     price             { '1000' }
     detail            { '詳細テスト' }
-    image             { 'imageテスト' }
     postage_id        { '2' }
     category_id       { '2' }
     states_id         { '2' }

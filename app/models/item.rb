@@ -10,11 +10,14 @@ class Item < ApplicationRecord
   validates :sipping_day_id, numericality: { other_than: 1 }
   validates :image, presence: true
 
-  has_one :purchase
+  #has_one :purchase
   belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
   belongs_to :states
-
+  belongs_to :area
+  belongs_to :postage
+  belongs_to :sipping_day
 end
