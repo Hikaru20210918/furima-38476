@@ -24,7 +24,7 @@
 | detail         | text       | null: false                    |
 | postage_id     | integer    |  null: false                   |
 | category_id    | integer    | null: false                    |
-| state_id       | integer    | null: false                    |
+| states_id      | integer    | null: false                    |
 | area_id        | integer    | null: false                    |
 | sipping_day_id | integer    | null: false                    |
 | user           | references | null: false, foreign_key: true |
