@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2023_02_02_122034) do
     t.string "detail", null: false
     t.string "postage_id", null: false
     t.string "category_id", null: false
-    t.string "state_id", null: false
+    t.string "states_id", null: false
     t.string "area_id", null: false
     t.string "sipping_day_id", null: false
     t.bigint "user_id", null: false

@@ -4,11 +4,11 @@ FactoryBot.define do
     price             { '1000' }
     detail            { '詳細テスト' }
     image             { 'imageテスト' }
-    postage_id        { '1' }
-    category_id       { '1' }
-    state_id          { '1' }
-    area_id           { '1' }
-    sipping_day_id    { '1' }
+    postage_id        { '2' }
+    category_id       { '2' }
+    states_id         { '2' }
+    area_id           { '2' }
+    sipping_day_id    { '2' }
     association       :user
 
     after(:build) do |item|
