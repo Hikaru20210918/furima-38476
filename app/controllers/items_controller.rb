@@ -60,3 +60,5 @@ class ItemsController < ApplicationController
     # 学習メモ：.merge()内のカラム名は user_id の「_id」記述が必要
   end
 end
+
+
