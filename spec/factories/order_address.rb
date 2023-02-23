@@ -3,6 +3,7 @@ FactoryBot.define do
     postcode        {"000-0000"}
     municipalities  {"横浜"}
     address         {"1-1"}
+    building        {"ビル名"}
     phone_number    {"08000000000"}
     area_id         {"1"}
     token           {"tok_abcdefghijk00000000000000000"}

@@ -8,8 +8,12 @@ RSpec.describe OrderAddress, type: :model do
   describe '商品の購入' do
     context '購入できる場合' do
       it '全ての値が存在すれば購入できる' do  
-      expect(@order_address).to be_valid
+        expect(@order_address).to be_valid
       end
+      it '建物名がなくても購入できる' do  
+        @order_address.building = ''
+        expect(@order_address).to be_valid
+        end
     end
 
     context '購入できない場合' do
@@ -28,7 +32,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Postcode is invalid"
       end
-      it '都道府県が未選択項目（id:1）では購入できない' do
+      it '都道府県が未選択項目（id:0）では購入できない' do
         @order_address.area_id = '0'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Area must be other than 0"
@@ -58,6 +62,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Phone number is too long (maximum is 11 characters)"
       end
+      it '電話番号に半角数字以外が含まれている場合は購入できない' do
+        @order_address.phone_number= '080００００0000'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Phone number is invalid"
+      end
+
       it 'user_idが空では購入できない' do
         @order_address.user_id= ''
         @order_address.valid?
