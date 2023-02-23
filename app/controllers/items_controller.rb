@@ -19,12 +19,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
-    if @item.user != current_user
-      redirect_to action: :index
+    if @item.purchase.present?
+      redirect_to root_path
+    else
+      if @item.user != current_user
+        redirect_to action: :index
+      end
     end
   end
 
