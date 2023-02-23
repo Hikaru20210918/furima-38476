@@ -1,15 +1,19 @@
 class OrdersController < ApplicationController
-
+  
   before_action :authenticate_user!, except: [:index ]
-
+ 
   def index 
-    @item = Item.find(params[:item_id])
-    if @item.purchase.present?
-      redirect_to root_path
-    else
-      @order_address = OrderAddress.new
-      if  @item.user == current_user
-        redirect_to items_path
+    unless user_signed_in?
+      redirect_to  '/users/sign_in'
+      else
+        @item = Item.find(params[:item_id])
+      if @item.purchase.present?
+          redirect_to root_path
+        else
+          @order_address = OrderAddress.new
+        if @item.user == current_user
+          redirect_to items_path
+        end
       end
     end
   end
